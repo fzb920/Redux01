@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import 'antd/dist/antd.css'
-import './TodoList.css'
-import {Input, Button, List} from 'antd'
+import TodoListUI from './TodoLIstUI'
 // import store from './store/index.js'
 import store from './store'
 // import { CHANGE_INPUT , ADD_ITEM , DELETE_ITEM }from './store/actionTypes'
-import { changeInputAction , addItemAction , deleteItemAction }from './store/actionCreators'
-
+import { changeInputAction , addItemAction , deleteItemAction , getListAction}from './store/actionCreators'
+import axios from 'axios'
 
 export default class TodoList extends Component {
 
@@ -23,28 +21,25 @@ export default class TodoList extends Component {
 
     render() {
         return (
-            <div className="TodoList">
-                <div className="TodoList-content">
-                    <Input 
-                        placeholder='write Something'
-                        style={{width:'300px',marginRight: '20px'}}
-                        value={this.state.inputValue}
-                        onChange={this.inputChange}
-                    />
-                    <Button type="primary" onClick={this.btnClick}>增加</Button>
-                    <div style={{width: '350px',margin: '10px'}}>
-                        <List
-                            bordered
-                            dataSource={this.state.list}
-                            renderItem={(item,index)=>(<List.Item onClick={this.deleteItem.bind(this,index)}>{item}</List.Item>)}
-                        ></List>
-                    </div>
-                </div>
-                
-            </div>
+            <TodoListUI
+                inputValue={this.state.inputValue}
+                inputChange={this.inputChange}
+                btnClick={this.btnClick}
+                list={this.state.list}
+                deleteItem={this.deleteItem}
+            />
         )
     }
-
+    componentDidMount(){
+        // axios.get('https://easy-mock.com/mock/5ecb7f80490e7e079cc99664/ReactDemo01')
+        axios.get('https://www.easy-mock.com/mock/5cfcce489dc7c36bd6da2c99/xiaojiejie/getList')
+        .then((res)=>{
+            // console.log(res)
+            const data = res.data;
+            const action =  getListAction(data)
+            store.dispatch(action)
+        })
+    }
     inputChange(e){
         // const action = {
         //     type: CHANGE_INPUT,
