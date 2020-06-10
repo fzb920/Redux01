@@ -31,8 +31,8 @@ export default class TodoList extends Component {
         )
     }
     componentDidMount(){
-        // axios.get('https://easy-mock.com/mock/5ecb7f80490e7e079cc99664/ReactDemo01')
-        axios.get('https://www.easy-mock.com/mock/5cfcce489dc7c36bd6da2c99/xiaojiejie/getList')
+        axios.get('https://easy-mock.com/mock/5ecb7f80490e7e079cc99664/ReactDemo01')
+        // axios.get('https://www.easy-mock.com/mock/5cfcce489dc7c36bd6da2c99/xiaojiejie/getList')
         .then((res)=>{
             // console.log(res)
             const data = res.data;
