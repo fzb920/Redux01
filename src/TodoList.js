@@ -3,13 +3,13 @@ import TodoListUI from './TodoLIstUI'
 // import store from './store/index.js'
 import store from './store'
 // import { CHANGE_INPUT , ADD_ITEM , DELETE_ITEM }from './store/actionTypes'
-import { getTodoList, changeInputAction , addItemAction , deleteItemAction  }from './store/actionCreators'
+import {getMyListAction, changeInputAction , addItemAction , deleteItemAction  }from './store/actionCreators'
 
 export default class TodoList extends Component {
 
     constructor(props){
         super(props)
-        console.log(store.getState())
+        // console.log(store.getState())
         this.state = store.getState();
         this.inputChange = this.inputChange.bind(this)
         this.storeChange = this.storeChange.bind(this)
@@ -29,8 +29,13 @@ export default class TodoList extends Component {
             />
         )
     }
+    // 组件已经被渲染到 DOM 中后运行
     componentDidMount(){
-        const action = getTodoList()
+        // const action = getTodoList()
+        // store.dispatch(action)
+
+        //Saga
+        const action = getMyListAction()
         store.dispatch(action)
     }
     inputChange(e){
