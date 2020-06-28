@@ -3,8 +3,7 @@ import TodoListUI from './TodoLIstUI'
 // import store from './store/index.js'
 import store from './store'
 // import { CHANGE_INPUT , ADD_ITEM , DELETE_ITEM }from './store/actionTypes'
-import { changeInputAction , addItemAction , deleteItemAction , getListAction}from './store/actionCreators'
-import axios from 'axios'
+import { getTodoList, changeInputAction , addItemAction , deleteItemAction  }from './store/actionCreators'
 
 export default class TodoList extends Component {
 
@@ -31,14 +30,8 @@ export default class TodoList extends Component {
         )
     }
     componentDidMount(){
-        axios.get('https://easy-mock.com/mock/5ecb7f80490e7e079cc99664/ReactDemo01')
-        // axios.get('https://www.easy-mock.com/mock/5cfcce489dc7c36bd6da2c99/xiaojiejie/getList')
-        .then((res)=>{
-            // console.log(res)
-            const data = res.data;
-            const action =  getListAction(data)
-            store.dispatch(action)
-        })
+        const action = getTodoList()
+        store.dispatch(action)
     }
     inputChange(e){
         // const action = {

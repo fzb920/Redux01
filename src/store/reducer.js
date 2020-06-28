@@ -1,7 +1,6 @@
 import { CHANGE_INPUT , ADD_ITEM , DELETE_ITEM, GET_LIST}from './actionTypes'
 const defaultStore = {
     inputValue : '',
-    list: ['AAAAAAAAAAAAA','BBBBBBBBBBBBBBB','CCCCCCCCCCCCCCCC']
 }
 export default (state = defaultStore, action)=>{
     // console.log(state,action)
